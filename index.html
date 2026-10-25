@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Village / Gram Panchayat Portal | GramSeva 360 e-Governance</title>
+  <meta name="description" content="Next-Generation Glassmorphism e-Governance Portal for Smart Village Administration, Citizen Certificates, Agri-Marketplace, Grievance Redressal, and Panchayat Development Tracking.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            emerald: {
+              450: '#10b981',
+              550: '#059669',
+              650: '#047857',
+            },
+            village: {
+              dark: '#070d18',
+              card: 'rgba(15, 23, 42, 0.65)',
+              gold: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Glassmorphism Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-slate-100 antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- Ambient Animated Gradient Orbs Background -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+    <div class="ambient-orb ambient-orb-4"></div>
+    <div class="ambient-orb ambient-orb-5"></div>
+  </div>
+
+  <!-- ================= TOP FIXED NAVBAR ================= -->
+  <header class="fixed top-0 left-0 right-0 z-40 header-glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo & Village Emblem -->
+        <a href="#home" class="flex items-center space-x-3.5 group">
+          <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-400 p-[1.5px] shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition-all duration-300">
+            <div class="w-full h-full bg-slate-950/80 rounded-2xl backdrop-blur-md flex items-center justify-center">
+              <i class="fa-solid fa-landmark-flag text-emerald-400 text-xl group-hover:scale-110 transition-transform"></i>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-display font-extrabold text-xl tracking-tight bg-gradient-to-r from-emerald-400 via-teal-200 to-white bg-clip-text text-transparent">
+                GramSeva 360
+              </span>
+              <span class="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                Smart GP
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 font-medium">Shubhgram Gram Panchayat Portal</p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-7 text-sm font-semibold">
+          <a href="#services" class="nav-link text-slate-300 hover:text-white transition flex items-center gap-1.5">
+            <i class="fa-solid fa-file-shield text-xs text-emerald-400"></i>
+            <span>Citizen Services</span>
+          </a>
+          <a href="#marketplace" class="nav-link text-slate-300 hover:text-white transition flex items-center gap-1.5">
+            <i class="fa-solid fa-wheat-awn text-xs text-amber-400"></i>
+            <span>Agri-Market</span>
+          </a>
+          <a href="#grievances" class="nav-link text-slate-300 hover:text-white transition flex items-center gap-1.5">
+            <i class="fa-solid fa-bullhorn text-xs text-rose-400"></i>
+            <span>Jan Sunwai</span>
+          </a>
+          <a href="#works" class="nav-link text-slate-300 hover:text-white transition flex items-center gap-1.5">
+            <i class="fa-solid fa-list-check text-xs text-cyan-400"></i>
+            <span>Vikas Tracker</span>
+          </a>
+          <a href="#helplines" class="nav-link text-slate-300 hover:text-white transition flex items-center gap-1.5">
+            <i class="fa-solid fa-phone-volume text-xs text-emerald-400"></i>
+            <span>Helplines</span>
+          </a>
+        </nav>
+
+        <!-- Right Side: Glass Theme Switcher, Weather pill, Role Switcher & Lang -->
+        <div class="flex items-center space-x-3">
+          
+          <!-- Glass Theme Switcher -->
+          <div class="hidden md:flex items-center space-x-1 p-1 rounded-xl glass-panel border border-white/15" title="Switch Glass Aesthetic">
+            <button onclick="setGlassTheme('crystal')" id="themeBtnCrystal" class="glass-preset-btn active">
+              💎 Crystal
+            </button>
+            <button onclick="setGlassTheme('frosted')" id="themeBtnFrosted" class="glass-preset-btn">
+              ❄️ Frost
+            </button>
+            <button onclick="setGlassTheme('neon')" id="themeBtnNeon" class="glass-preset-btn">
+              🔮 Neon
+            </button>
+          </div>
+
+          <!-- Weather / Mandi Ticker Pill -->
+          <div class="hidden xl:flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs text-slate-300">
+            <i class="fa-solid fa-cloud-sun text-amber-400"></i>
+            <span>28°C Ward 3</span>
+            <span class="w-1 h-1 rounded-full bg-slate-500"></span>
+            <span class="text-emerald-400 font-semibold">AQI 42 (Good)</span>
+          </div>
+
+          <!-- Language Toggle -->
+          <button id="langToggleBtn" class="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-300 transition" title="Toggle Language">
+            <span>EN</span> | <span class="text-slate-400 font-normal">हिं</span>
+          </button>
+
+          <!-- Role Switcher Dropdown (Citizen / Farmer / Admin) -->
+          <div class="relative" id="roleDropdownWrapper">
+            <button id="roleDropdownBtn" class="flex items-center space-x-2.5 px-3 py-1.5 rounded-xl glass-card border border-emerald-500/30 hover:border-emerald-500/60 transition group text-left">
+              <div id="roleAvatarIcon" class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 text-sm">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="hidden sm:block">
+                <div class="flex items-center space-x-1.5">
+                  <span id="roleLabelText" class="text-xs font-bold text-white">Citizen</span>
+                  <span class="live-pulse"></span>
+                </div>
+                <p id="roleUserSubtext" class="text-[10px] text-slate-400 truncate max-w-[100px]">Ramesh Kumar</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-slate-400 text-xs group-hover:text-emerald-300 transition"></i>
+            </button>
+
+            <!-- Role Selection Menu -->
+            <div id="roleMenu" class="hidden absolute right-0 mt-2 w-64 rounded-2xl glass-panel p-2 shadow-2xl border border-white/15 z-50">
+              <div class="px-3 py-2 border-b border-white/10 mb-1">
+                <p class="text-xs text-slate-400">Switch Portal Perspective:</p>
+              </div>
+              
+              <button onclick="setPortalRole('citizen')" class="w-full flex items-center space-x-3 px-3 py-2 rounded-xl hover:bg-white/10 text-left transition role-select-btn" data-role="citizen">
+                <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-white">Citizen View</p>
+                  <p class="text-[10px] text-slate-400">Apply certificates, log issues</p>
+                </div>
+              </button>
+
+              <button onclick="setPortalRole('farmer')" class="w-full flex items-center space-x-3 px-3 py-2 rounded-xl hover:bg-white/10 text-left transition role-select-btn" data-role="farmer">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-white">Farmer / Seller</p>
+                  <p class="text-[10px] text-slate-400">List crops & view mandi rates</p>
+                </div>
+              </button>
+
+              <button onclick="setPortalRole('admin')" class="w-full flex items-center space-x-3 px-3 py-2 rounded-xl hover:bg-white/10 text-left transition role-select-btn" data-role="admin">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-white">Panchayat Admin (Sarpanch)</p>
+                  <p class="text-[10px] text-slate-400">Approve certs & manage works</p>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobileNav" class="hidden lg:hidden glass-panel border-t border-white/10 px-4 pt-3 pb-6 space-y-3">
+      <a href="#services" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-white/10">Citizen Services</a>
+      <a href="#marketplace" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-white/10">Agri-Marketplace</a>
+      <a href="#grievances" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-white/10">Jan Sunwai Grievances</a>
+      <a href="#works" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-white/10">Panchayat Works Tracker</a>
+      <a href="#helplines" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-white/10">Emergency Helplines</a>
+    </div>
+  </header>
+
+  <!-- Role Notification Alert Bar (Dynamically changes based on role) -->
+  <div id="roleAlertBanner" class="mt-20 pt-2 pb-2 px-4 bg-emerald-950/40 border-b border-emerald-500/20 text-center text-xs font-medium text-emerald-300 flex items-center justify-center gap-2">
+    <span class="live-pulse"></span>
+    <span id="roleBannerText">Logged in as: <strong>Citizen (Ramesh Kumar - Ward 4)</strong>. You can apply for certificates and report public grievances.</span>
+  </div>
+
+  <!-- Live Notice Ticker -->
+  <div class="bg-slate-900/80 border-b border-white/5 py-2 px-4 overflow-hidden ticker-container">
+    <div class="flex items-center max-w-7xl mx-auto text-xs">
+      <span class="flex-shrink-0 font-bold uppercase tracking-wider text-amber-400 mr-4 flex items-center gap-1.5 bg-amber-400/10 px-2.5 py-0.5 rounded-md border border-amber-400/20">
+        <i class="fa-solid fa-bullhorn text-xs"></i> Gram Notice
+      </span>
+      <div class="overflow-hidden relative w-full">
+        <div class="ticker-content text-slate-300 space-x-12">
+          <span>📢 <strong>Gram Sabha Meeting:</strong> Scheduled this Sunday at 10:30 AM at Village Community Hall. Agenda: Jal Jeevan Mission Phase 2 & Solar Streetlights.</span>
+          <span>💧 <strong>Drinking Water Pipeline Notice:</strong> Scheduled maintenance in Ward 6 & 7 on Tuesday from 2:00 PM to 5:00 PM.</span>
+          <span>🌾 <strong>PM-Kisan 17th Installment e-KYC Camp:</strong> Ongoing at Panchayat e-Governance Kiosk. Bring Aadhaar card.</span>
+          <span>💉 <strong>Free Health & Eye Checkup Camp:</strong> Primary Health Center, Thursday 9:00 AM onwards.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="home" class="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text & Quick Action Launchpad -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-widest shadow-inner">
+            <i class="fa-solid fa-certificate"></i>
+            <span>Digital Gram Panchayat 2.0 • ISO 9001:2025</span>
+          </div>
+
+          <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight sm:leading-tight">
+            Transparent e-Governance for an 
+            <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+              Empowered Smart Village
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
+            Apply for official certificates in 3 minutes, trade agricultural produce directly with buyers at fair mandis, resolve civic infrastructure grievances, and monitor village public funds with complete transparency.
+          </p>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex flex-wrap gap-3.5 pt-2">
+            <button onclick="openApplyCertModal()" class="btn-emerald px-5 py-3 rounded-xl font-bold text-sm flex items-center space-x-2">
+              <i class="fa-solid fa-file-signature"></i>
+              <span>Apply for Certificate</span>
+            </button>
+            <a href="#services" class="btn-glass px-5 py-3 rounded-xl font-bold text-sm flex items-center space-x-2">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Track Application</span>
+            </a>
+            <a href="#marketplace" class="btn-glass px-4 py-3 rounded-xl font-bold text-sm text-amber-300 border-amber-500/30 hover:border-amber-400 flex items-center space-x-2">
+              <i class="fa-solid fa-store"></i>
+              <span>Kisan e-Mandi</span>
+            </a>
+            <button onclick="openGrievanceModal()" class="btn-glass px-4 py-3 rounded-xl font-bold text-sm text-rose-300 border-rose-500/30 hover:border-rose-400 flex items-center space-x-2">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>Lodge Grievance</span>
+            </button>
+          </div>
+
+          <!-- Hero Metrics Ticker Bar -->
+          <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/10">
+            <div class="glass-panel p-3.5 rounded-xl text-center">
+              <p class="text-2xl font-extrabold font-display text-emerald-400">8,420+</p>
+              <p class="text-xs text-slate-400 font-medium">Village Residents</p>
+            </div>
+            <div class="glass-panel p-3.5 rounded-xl text-center">
+              <p class="text-2xl font-extrabold font-display text-cyan-400">1,480+</p>
+              <p class="text-xs text-slate-400 font-medium">Certs Issued</p>
+            </div>
+            <div class="glass-panel p-3.5 rounded-xl text-center">
+              <p class="text-2xl font-extrabold font-display text-amber-400">₹1.45 Cr</p>
+              <p class="text-xs text-slate-400 font-medium">Public Works Tracked</p>
+            </div>
+            <div class="glass-panel p-3.5 rounded-xl text-center">
+              <p class="text-2xl font-extrabold font-display text-teal-300">98.2%</p>
+              <p class="text-xs text-slate-400 font-medium">Grievance Resolved</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Hero Visual Showcase with Real Image and Glass Badges -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-3xl p-2.5 glass-panel border border-white/20 shadow-2xl overflow-hidden group">
+            
+            <!-- Real Generated Smart Village Image -->
+            <img src="assets/images/hero.jpg" alt="Smart Village Panchayat e-Governance Center" class="w-full h-[400px] object-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-700">
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent rounded-2xl pointer-events-none"></div>
+
+            <!-- Floating Glass Badge: Solar & 5G -->
+            <div class="absolute top-6 left-6 glass-panel px-3.5 py-2 rounded-xl flex items-center space-x-2 border border-emerald-400/30 backdrop-blur-md shadow-lg">
+              <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
+                <i class="fa-solid fa-solar-panel"></i>
+              </div>
+              <div>
+                <p class="text-[11px] font-bold text-white">100% Solar Powered</p>
+                <p class="text-[9px] text-emerald-300">Net Zero Carbon Kiosk</p>
+              </div>
+            </div>
+
+            <!-- Floating Glass Badge: BharatNet -->
+            <div class="absolute top-6 right-6 glass-panel px-3.5 py-2 rounded-xl flex items-center space-x-2 border border-cyan-400/30 backdrop-blur-md shadow-lg">
+              <div class="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs">
+                <i class="fa-solid fa-wifi"></i>
+              </div>
+              <div>
+                <p class="text-[11px] font-bold text-white">BharatNet 5G</p>
+                <p class="text-[9px] text-cyan-300">High Speed Fiber</p>
+              </div>
+            </div>
+
+            <!-- Bottom Floating Card: Award Badge -->
+            <div class="absolute bottom-6 left-6 right-6 glass-panel p-3.5 rounded-2xl border border-white/20 backdrop-blur-xl">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 text-lg">
+                    <i class="fa-solid fa-award"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-white">Ranked #1 Model Gram Panchayat</p>
+                    <p class="text-[10px] text-slate-300">National Panchayat Puraskar Winner 2025</p>
+                  </div>
+                </div>
+                <span class="text-xs font-bold px-2 py-1 bg-white/10 rounded-lg text-emerald-300 border border-emerald-500/30">Verified</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MAIN CONTENT MODULES CONTAINER ================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-24">
+
+    <!-- ================= MODULE 1: CITIZEN SERVICES & CERTIFICATES ================= -->
+    <section id="services" class="space-y-8 scroll-mt-28">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <i class="fa-solid fa-stamp"></i>
+            <span>Citizen Service Portal</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display">
+            Official Certificates & Status Tracker
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">
+            Apply online for statutory certificates with verifiable QR codes & track clearance stages in real-time.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="openApplyCertModal()" class="btn-emerald px-4 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-2">
+            <i class="fa-solid fa-plus"></i>
+            <span>New Application</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Service Cards (Income, Birth, Death, Residence) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Card 1: Income Certificate -->
+        <div class="glass-card p-5 rounded-2xl relative overflow-hidden group">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/30 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Avg. 48 Hrs</span>
+          </div>
+          <h3 class="text-base font-bold text-white mt-4">Income Certificate</h3>
+          <p class="text-xs text-slate-400 mt-1">आय प्रमाण पत्र</p>
+          <p class="text-xs text-slate-300 mt-2.5 line-clamp-2">Mandatory for scholarship, Kisan schemes, ration subsidies, and state reservations.</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+            <span class="text-slate-400">Govt Fee: <strong class="text-white">₹0 (Free)</strong></span>
+            <button onclick="openApplyCertModal('income')" class="text-emerald-400 font-bold hover:text-emerald-300 flex items-center gap-1">
+              Apply <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Birth Certificate -->
+        <div class="glass-card p-5 rounded-2xl relative overflow-hidden group">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg border border-blue-500/30 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-baby"></i>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Avg. 24 Hrs</span>
+          </div>
+          <h3 class="text-base font-bold text-white mt-4">Birth Certificate</h3>
+          <p class="text-xs text-slate-400 mt-1">जन्म प्रमाण पत्र</p>
+          <p class="text-xs text-slate-300 mt-2.5 line-clamp-2">Official registration under Civil Registration System (CRS) with DigiLocker sync.</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+            <span class="text-slate-400">Govt Fee: <strong class="text-white">₹0 (Free)</strong></span>
+            <button onclick="openApplyCertModal('birth')" class="text-blue-400 font-bold hover:text-blue-300 flex items-center gap-1">
+              Apply <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Death Certificate -->
+        <div class="glass-card p-5 rounded-2xl relative overflow-hidden group">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg border border-purple-500/30 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-dove"></i>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Avg. 48 Hrs</span>
+          </div>
+          <h3 class="text-base font-bold text-white mt-4">Death Certificate</h3>
+          <p class="text-xs text-slate-400 mt-1">मृत्यु प्रमाण पत्र</p>
+          <p class="text-xs text-slate-300 mt-2.5 line-clamp-2">Required for family pension, land inheritance mutation, and legal insurance settlement.</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+            <span class="text-slate-400">Govt Fee: <strong class="text-white">₹0 (Free)</strong></span>
+            <button onclick="openApplyCertModal('death')" class="text-purple-400 font-bold hover:text-purple-300 flex items-center gap-1">
+              Apply <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: Domicile / Residence -->
+        <div class="glass-card p-5 rounded-2xl relative overflow-hidden group">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg border border-amber-500/30 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-house-user"></i>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Avg. 72 Hrs</span>
+          </div>
+          <h3 class="text-base font-bold text-white mt-4">Residence Certificate</h3>
+          <p class="text-xs text-slate-400 mt-1">मूल निवास प्रमाण पत्र</p>
+          <p class="text-xs text-slate-300 mt-2.5 line-clamp-2">Proof of bona-fide village residence for state government jobs and college admissions.</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+            <span class="text-slate-400">Govt Fee: <strong class="text-white">₹0 (Free)</strong></span>
+            <button onclick="openApplyCertModal('residence')" class="text-amber-400 font-bold hover:text-amber-300 flex items-center gap-1">
+              Apply <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LIVE APPLICATION STATUS TRACKER TOOL -->
+      <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/15 relative overflow-hidden">
+        
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/10">
+          <div>
+            <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+              <i class="fa-solid fa-magnifying-glass-chart"></i>
+              <span>Live Application Tracker</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold font-display text-white mt-1">
+              Track Your Certificate Processing Status
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1">
+              Enter your Application Tracking ID (e.g., GP-2026-INC-7821) to check live workflow checkpoints.
+            </p>
+          </div>
+
+          <!-- Quick Test Tracking IDs -->
+          <div class="flex items-center flex-wrap gap-2 text-xs">
+            <span class="text-slate-400 text-[11px]">Quick Samples:</span>
+            <button onclick="quickLookupTrack('GP-2026-INC-7821')" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition">
+              GP-2026-INC-7821 (Approved)
+            </button>
+            <button onclick="quickLookupTrack('GP-2026-BRT-4402')" class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 hover:bg-amber-500/20 transition">
+              GP-2026-BRT-4402 (In Verification)
+            </button>
+            <button onclick="quickLookupTrack('GP-2026-DTH-1193')" class="px-2.5 py-1 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 transition">
+              GP-2026-DTH-1193 (Pending)
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="pt-6">
+          <form id="trackSearchForm" onsubmit="handleTrackSearch(event)" class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <i class="fa-solid fa-receipt absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+              <input type="text" id="trackInput" placeholder="Enter Application Reference ID (e.g., GP-2026-INC-7821)" class="w-full pl-11 pr-4 py-3 rounded-xl glass-input text-sm uppercase tracking-wider font-semibold placeholder:normal-case placeholder:font-normal placeholder:tracking-normal" value="GP-2026-INC-7821">
+            </div>
+            <button type="submit" class="btn-emerald px-6 py-3 rounded-xl font-bold text-sm flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Track Status</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Live Tracker Result Container -->
+        <div id="trackerResultBox" class="mt-8 pt-6 border-t border-white/10">
+          
+          <!-- Metadata header -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span id="trackerCertTypeBadge" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Income Certificate</span>
+                <span id="trackerRefCode" class="text-xs font-mono font-bold text-white">GP-2026-INC-7821</span>
+              </div>
+              <h4 id="trackerApplicantName" class="text-base font-bold text-white mt-2">Applicant: Ramesh Kumar (Father: Shiv Lal)</h4>
+              <p id="trackerDetailsSub" class="text-xs text-slate-400">Ward No. 4, Shubhgram • Submitted on: 22 Oct 2026, 11:30 AM</p>
+            </div>
+
+            <!-- Dynamic Action (Download Certificate button or Admin Action) -->
+            <div class="flex items-center gap-3">
+              <div id="trackerStatusTag" class="text-center px-4 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold">
+                <i class="fa-solid fa-circle-check mr-1"></i> Approved & Issued
+              </div>
+              <button id="viewCertificateBtn" onclick="openCertificateModal()" class="btn-emerald px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-lg shadow-emerald-500/20">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                <span>View Certificate</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4-Stage Stepper -->
+          <div class="mt-8 relative px-2 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+              
+              <!-- Step 1 -->
+              <div class="flex flex-col items-center text-center relative step-node" id="stepNode1">
+                <div class="w-11 h-11 rounded-2xl bg-emerald-500 text-slate-950 font-bold flex items-center justify-center text-base shadow-lg shadow-emerald-500/40 z-10">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <h5 class="text-xs font-bold text-white mt-3">1. Application Lodged</h5>
+                <p class="text-[11px] text-slate-400 mt-0.5">Online Acknowledgement</p>
+                <span class="text-[10px] text-emerald-400 font-mono mt-1">22 Oct, 11:30 AM</span>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="flex flex-col items-center text-center relative step-node" id="stepNode2">
+                <div class="w-11 h-11 rounded-2xl bg-emerald-500 text-slate-950 font-bold flex items-center justify-center text-base shadow-lg shadow-emerald-500/40 z-10">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <h5 class="text-xs font-bold text-white mt-3">2. Document Verification</h5>
+                <p class="text-[11px] text-slate-400 mt-0.5">Revenue Inspector Review</p>
+                <span class="text-[10px] text-emerald-400 font-mono mt-1">23 Oct, 02:15 PM</span>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="flex flex-col items-center text-center relative step-node" id="stepNode3">
+                <div class="w-11 h-11 rounded-2xl bg-emerald-500 text-slate-950 font-bold flex items-center justify-center text-base shadow-lg shadow-emerald-500/40 z-10">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <h5 class="text-xs font-bold text-white mt-3">3. Field Inquiry</h5>
+                <p class="text-[11px] text-slate-400 mt-0.5">Gram Sevak Sign-off</p>
+                <span class="text-[10px] text-emerald-400 font-mono mt-1">24 Oct, 10:45 AM</span>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="flex flex-col items-center text-center relative step-node" id="stepNode4">
+                <div class="w-11 h-11 rounded-2xl bg-emerald-500 text-slate-950 font-bold flex items-center justify-center text-base shadow-lg shadow-emerald-500/40 z-10">
+                  <i class="fa-solid fa-check-double"></i>
+                </div>
+                <h5 class="text-xs font-bold text-white mt-3">4. Digitally Signed</h5>
+                <p class="text-[11px] text-slate-400 mt-0.5">Sarpanch & VDO Seal</p>
+                <span class="text-[10px] text-emerald-400 font-mono mt-1">24 Oct, 04:30 PM</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Admin Quick Action Box (visible only when Admin role is active) -->
+          <div id="adminCertActionPanel" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between flex-wrap gap-3">
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-shield-halved text-emerald-400 text-base"></i>
+              <span class="text-xs text-white font-bold">Admin Governance Override:</span>
+              <span class="text-xs text-slate-300">You can approve or advance this application.</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="adminApproveCurrentCert()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition">
+                <i class="fa-solid fa-stamp mr-1"></i> Digitally Sign & Approve
+              </button>
+              <button onclick="adminRejectCurrentCert()" class="px-3 py-1.5 rounded-lg bg-rose-600/80 hover:bg-rose-500 text-white text-xs font-bold transition">
+                <i class="fa-solid fa-ban mr-1"></i> Request Clarification
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= MODULE 2: AGRI-MARKETPLACE (RURAL E-COMMERCE) ================= -->
+    <section id="marketplace" class="space-y-8 scroll-mt-28">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <i class="fa-solid fa-wheat-awn"></i>
+            <span>Rural E-Commerce & Kisan Mandi</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display">
+            Direct Farmgate Produce Marketplace
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">
+            Connect directly with verified village farmers. Buy certified crops at transparent rates without middleman commission.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button id="listProduceBtn" onclick="openAddProduceModal()" class="btn-emerald px-4 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-emerald-600 border-amber-400/40">
+            <i class="fa-solid fa-plus"></i>
+            <span>List Farm Produce</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live APMC Mandi Benchmark Ticker -->
+      <div class="glass-panel p-3.5 rounded-2xl border border-amber-500/20 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+        <div class="flex items-center space-x-2 text-amber-300 font-bold">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Live APMC Benchmark Rates (Today):</span>
+        </div>
+        <div class="flex items-center flex-wrap gap-4 text-slate-300">
+          <span class="flex items-center gap-1">🌾 Sharbati Wheat: <strong class="text-white">₹2,450/Qtl</strong> <span class="text-emerald-400 text-[10px]">▲ +₹40</span></span>
+          <span class="flex items-center gap-1">🍚 Basmati Rice: <strong class="text-white">₹4,200/Qtl</strong> <span class="text-emerald-400 text-[10px]">▲ +₹75</span></span>
+          <span class="flex items-center gap-1">🌻 Yellow Mustard: <strong class="text-white">₹5,750/Qtl</strong> <span class="text-emerald-400 text-[10px]">▲ +₹110</span></span>
+          <span class="flex items-center gap-1">🥔 Potato Farmgate: <strong class="text-white">₹18/Kg</strong> <span class="text-slate-400 text-[10px]">● steady</span></span>
+        </div>
+      </div>
+
+      <!-- Filter Chips & Search Bar -->
+      <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+        
+        <!-- Category Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1" id="mandiCategoryPills">
+          <button onclick="filterMandiCategory('all')" class="mandi-cat-pill active px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 transition">
+            All Crops (6)
+          </button>
+          <button onclick="filterMandiCategory('grains')" class="mandi-cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Grains & Cereals
+          </button>
+          <button onclick="filterMandiCategory('vegetables')" class="mandi-cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Fresh Vegetables
+          </button>
+          <button onclick="filterMandiCategory('oilseeds')" class="mandi-cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Oilseeds & Cash
+          </button>
+          <button onclick="filterMandiCategory('dairy')" class="mandi-cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Organic & Dairy
+          </button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative w-full md:w-72">
+          <i class="fa-solid fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          <input type="text" id="mandiSearchInput" oninput="handleMandiSearch()" placeholder="Search wheat, rice, mustard..." class="w-full pl-9 pr-4 py-2 rounded-xl glass-input text-xs">
+        </div>
+
+      </div>
+
+      <!-- Product Catalog Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="mandiProductsGrid">
+        
+        <!-- Dynamically rendered by JavaScript -->
+
+      </div>
+
+    </section>
+
+    <!-- ================= MODULE 3: GRIEVANCE REDRESSAL SYSTEM ================= -->
+    <section id="grievances" class="space-y-8 scroll-mt-28">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Jan Sunwai • 24x7 Civic Desk</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display">
+            Public Grievance Redressal System
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">
+            Log village infrastructure complaints (Water, Power, Roads, Sanitation). Direct escalation to Ward Panch & Panchayat Secretary.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="openGrievanceModal()" class="btn-emerald px-4 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-2 bg-gradient-to-r from-rose-600 to-amber-600 border-rose-400/40">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Register New Grievance</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Overview KPI Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-panel p-4 rounded-2xl flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg border border-blue-500/30">
+            <i class="fa-solid fa-ticket"></i>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold font-display text-white" id="totalGrievancesCount">128</p>
+            <p class="text-xs text-slate-400">Total Logged</p>
+          </div>
+        </div>
+
+        <div class="glass-panel p-4 rounded-2xl flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg border border-amber-500/30">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold font-display text-amber-400" id="inProgressGrievancesCount">14</p>
+            <p class="text-xs text-slate-400">In-Progress</p>
+          </div>
+        </div>
+
+        <div class="glass-panel p-4 rounded-2xl flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/30">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold font-display text-emerald-400" id="resolvedGrievancesCount">114</p>
+            <p class="text-xs text-slate-400">Resolved (89%)</p>
+          </div>
+        </div>
+
+        <div class="glass-panel p-4 rounded-2xl flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg border border-purple-500/30">
+            <i class="fa-solid fa-stopwatch-20"></i>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold font-display text-purple-400">36.5 Hrs</p>
+            <p class="text-xs text-slate-400">Avg. Resolution Time</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grievance Filter Tabs & Search -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        
+        <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto" id="grievanceFilterTabs">
+          <button onclick="filterGrievanceStatus('all')" class="grievance-status-pill active px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 transition">
+            All Tickets
+          </button>
+          <button onclick="filterGrievanceStatus('pending')" class="grievance-status-pill px-4 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Pending (3)
+          </button>
+          <button onclick="filterGrievanceStatus('in-progress')" class="grievance-status-pill px-4 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            In-Progress (3)
+          </button>
+          <button onclick="filterGrievanceStatus('resolved')" class="grievance-status-pill px-4 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Resolved (2)
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3 w-full md:w-auto">
+          <select id="grievanceCategorySelect" onchange="handleGrievanceCategoryFilter()" class="glass-input px-3 py-2 rounded-xl text-xs font-medium">
+            <option value="all">All Infrastructure Categories</option>
+            <option value="Water">💧 Drinking Water / Pipe Leakage</option>
+            <option value="Electricity">⚡ Electricity & Solar Streetlights</option>
+            <option value="Roads">🛣️ Roads, Paving & Drainage</option>
+            <option value="Sanitation">🧹 Sanitation & Solid Waste</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Grievance Tickets Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="grievancesGrid">
+        <!-- Dynamically rendered by JavaScript -->
+      </div>
+
+    </section>
+
+    <!-- ================= MODULE 4: PANCHAYAT WORK & TASK TRACKER ================= -->
+    <section id="works" class="space-y-8 scroll-mt-28">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Vikas Samiksha • Public Funds Audit</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display">
+            Panchayat Works & Development Tracker
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">
+            Real-time administrative registry of community development projects, allocated grants, assigned contractors, and milestone progression.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button id="addWorkProjectBtn" onclick="openAddWorkModal()" class="btn-emerald px-4 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-2 bg-gradient-to-r from-cyan-600 to-emerald-600 border-cyan-400/40">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Development Work</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Financial Transparency Snapshot -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <div class="glass-panel p-5 rounded-2xl border-l-4 border-l-cyan-400">
+          <p class="text-xs font-medium text-slate-400">15th Finance Commission & State Grants</p>
+          <div class="flex items-baseline space-x-2 mt-2">
+            <h3 class="text-2xl font-extrabold font-display text-white">₹64,50,000</h3>
+            <span class="text-xs text-cyan-400 font-bold">Total Sanctioned</span>
+          </div>
+          <div class="mt-3 w-full bg-slate-800 rounded-full h-2">
+            <div class="bg-cyan-400 h-2 rounded-full" style="width: 100%"></div>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2">Allocated across 5 ongoing and 18 completed village works</p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border-l-4 border-l-emerald-400">
+          <p class="text-xs font-medium text-slate-400">Direct Expenditure Released</p>
+          <div class="flex items-baseline space-x-2 mt-2">
+            <h3 class="text-2xl font-extrabold font-display text-emerald-400">₹48,20,000</h3>
+            <span class="text-xs text-emerald-300 font-bold">74.7% Utilized</span>
+          </div>
+          <div class="mt-3 w-full bg-slate-800 rounded-full h-2">
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full progress-bar-glow" style="width: 74.7%"></div>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2">Passed via Public Financial Management System (PFMS)</p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border-l-4 border-l-amber-400">
+          <p class="text-xs font-medium text-slate-400">Social Audit & Citizen Inspection</p>
+          <div class="flex items-baseline space-x-2 mt-2">
+            <h3 class="text-2xl font-extrabold font-display text-amber-400">100% Geo-Tagged</h3>
+            <span class="text-xs text-amber-300 font-bold">Verified</span>
+          </div>
+          <div class="mt-3 flex items-center space-x-2 text-xs text-slate-300">
+            <i class="fa-solid fa-satellite text-amber-400"></i>
+            <span>ISRO Bhuvan & Gram Manchitra Synced</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2">Every construction milestone inspected before bill release</p>
+        </div>
+
+      </div>
+
+      <!-- Works Registry Table / Interactive Cards -->
+      <div class="glass-panel rounded-3xl border border-white/15 overflow-hidden">
+        
+        <div class="p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center space-x-2">
+            <span class="text-sm font-bold text-white">Active Community Development Registry</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">FY 2026-27</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="filterWorksCategory('all')" class="works-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950">All Works</button>
+            <button onclick="filterWorksCategory('energy')" class="works-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 text-slate-300 hover:bg-white/10">Renewables</button>
+            <button onclick="filterWorksCategory('water')" class="works-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 text-slate-300 hover:bg-white/10">Water & Sanitation</button>
+            <button onclick="filterWorksCategory('education')" class="works-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 text-slate-300 hover:bg-white/10">Health & Education</button>
+          </div>
+        </div>
+
+        <!-- Interactive Works Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300" id="worksTable">
+            <thead class="bg-slate-900/80 text-[11px] uppercase tracking-wider text-slate-400 border-b border-white/10">
+              <tr>
+                <th class="px-5 py-4">Work / Project Name</th>
+                <th class="px-5 py-4">Scheme / Funding</th>
+                <th class="px-5 py-4">Sanctioned Budget</th>
+                <th class="px-5 py-4">Assigned Contractor</th>
+                <th class="px-5 py-4">Milestone Progress</th>
+                <th class="px-5 py-4">Status</th>
+                <th class="px-5 py-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5" id="worksTableBody">
+              <!-- Dynamically populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= EMERGENCY HELPLINES STRIP ================= -->
+    <section id="helplines" class="space-y-6 scroll-mt-28">
+      <div class="border-b border-white/10 pb-4">
+        <div class="inline-flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-1">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>24x7 Emergency Helplines</span>
+        </div>
+        <h2 class="text-2xl font-extrabold font-display">Toll-Free Government & Village Desk Hotlines</h2>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        
+        <a href="tel:112" class="glass-card p-4 rounded-2xl text-center border-rose-500/30 hover:border-rose-400 group">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-base mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-shield-cat"></i>
+          </div>
+          <p class="text-xl font-extrabold text-white font-display">112</p>
+          <p class="text-[11px] text-slate-300 font-bold mt-0.5">National Police</p>
+          <p class="text-[9px] text-slate-400">Emergency Desk</p>
+        </a>
+
+        <a href="tel:108" class="glass-card p-4 rounded-2xl text-center border-red-500/30 hover:border-red-400 group">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-base mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-truck-medical"></i>
+          </div>
+          <p class="text-xl font-extrabold text-white font-display">108</p>
+          <p class="text-[11px] text-slate-300 font-bold mt-0.5">Rural Ambulance</p>
+          <p class="text-[9px] text-slate-400">Medical Emergency</p>
+        </a>
+
+        <a href="tel:1551" class="glass-card p-4 rounded-2xl text-center border-amber-500/30 hover:border-amber-400 group">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-base mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <p class="text-xl font-extrabold text-white font-display">1551</p>
+          <p class="text-[11px] text-slate-300 font-bold mt-0.5">Kisan Call Centre</p>
+          <p class="text-[9px] text-slate-400">Crop Advisory</p>
+        </a>
+
+        <a href="tel:1912" class="glass-card p-4 rounded-2xl text-center border-yellow-500/30 hover:border-yellow-400 group">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-base mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <p class="text-xl font-extrabold text-white font-display">1912</p>
+          <p class="text-[11px] text-slate-300 font-bold mt-0.5">Vidyut Sahayak</p>
+          <p class="text-[9px] text-slate-400">Power Grid Faults</p>
+        </a>
+
+        <a href="tel:1091" class="glass-card p-4 rounded-2xl text-center border-pink-500/30 hover:border-pink-400 group">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-base mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-person-dress"></i>
+          </div>
+          <p class="text-xl font-extrabold text-white font-display">1091</p>
+          <p class="text-[11px] text-slate-300 font-bold mt-0.5">Women Helpline</p>
+          <p class="text-[9px] text-slate-400">Safety & Support</p>
+        </a>
+
+        <div class="glass-card p-4 rounded-2xl text-center border-emerald-500/30 hover:border-emerald-400 group cursor-pointer" onclick="openSarpanchCall()">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-landmark"></i>
+          </div>
+          <p class="text-sm font-extrabold text-white font-display">0141-289410</p>
+          <p class="text-[11px] text-slate-300 font-bold mt-0.5">Sarpanch Desk</p>
+          <p class="text-[9px] text-emerald-400">Panchayat Office</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/10 bg-slate-950/90 backdrop-blur-2xl py-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Col 1: Brand & Mission -->
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400">
+              <i class="fa-solid fa-landmark-flag text-base"></i>
+            </div>
+            <span class="font-display font-extrabold text-lg text-white">GramSeva 360</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-xs">
+            Shubhgram Model Gram Panchayat e-Governance portal. Delivering zero-touch certificate issuance, transparent rural mandis, and democratic public task audits.
+          </p>
+          <div class="flex items-center space-x-2 text-[11px] text-emerald-400">
+            <span class="live-pulse"></span>
+            <span>Server Online • Response Time: 18ms</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Government Portals Sync -->
+        <div class="space-y-2">
+          <p class="text-sm font-bold text-white">Integrated Government Platforms</p>
+          <ul class="space-y-1.5 text-xs text-slate-300">
+            <li class="hover:text-emerald-400 transition flex items-center gap-1.5"><i class="fa-solid fa-check text-[10px] text-emerald-400"></i> e-GramSwaraj Unified Portal</li>
+            <li class="hover:text-emerald-400 transition flex items-center gap-1.5"><i class="fa-solid fa-check text-[10px] text-emerald-400"></i> DigiLocker India Cloud</li>
+            <li class="hover:text-emerald-400 transition flex items-center gap-1.5"><i class="fa-solid fa-check text-[10px] text-emerald-400"></i> National Panchayat Portal (Panchayat.gov.in)</li>
+            <li class="hover:text-emerald-400 transition flex items-center gap-1.5"><i class="fa-solid fa-check text-[10px] text-emerald-400"></i> e-NAM (National Agriculture Market)</li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Panchayat Office Timing -->
+        <div class="space-y-2">
+          <p class="text-sm font-bold text-white">Panchayat Bhawan Kiosk</p>
+          <p class="text-xs text-slate-300">Main Square, Shubhgram Village, District Headquarters Road, PIN: 302019</p>
+          <p class="text-xs text-slate-300 pt-1"><strong>Working Hours:</strong> Mon - Sat: 9:30 AM to 5:30 PM</p>
+          <p class="text-xs text-slate-300"><strong>Village Digital Kiosk Operator:</strong> Rameshwar Sharma</p>
+        </div>
+
+        <!-- Col 4: Badges & Accessibility -->
+        <div class="space-y-3">
+          <p class="text-sm font-bold text-white">Accessibility & Compliance</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] text-slate-300">GIGW 2.0 Compliant</span>
+            <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] text-slate-300">WCAG 2.1 AAA</span>
+            <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] text-slate-300">SSL 256-Bit</span>
+          </div>
+          <div class="pt-2">
+            <button onclick="toggleHighContrast()" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-semibold text-slate-300 flex items-center gap-2 transition">
+              <i class="fa-solid fa-circle-half-stroke"></i>
+              <span>Toggle Contrast Mode</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+        <p>© 2026 Gram Panchayat Shubhgram, Ministry of Panchayati Raj, Govt. of India. All rights reserved.</p>
+        <div class="flex items-center space-x-4">
+          <a href="#" class="hover:text-slate-300 transition">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-300 transition">Citizen Charter</a>
+          <a href="#" class="hover:text-slate-300 transition">RTI Portal</a>
+          <a href="#" class="hover:text-slate-300 transition">Sitemap</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & POPUPS ================= -->
+
+  <!-- MODAL 1: Apply For Certificate Modal -->
+  <div id="applyCertModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop overflow-y-auto">
+    <div class="glass-panel w-full max-w-xl rounded-3xl p-6 sm:p-8 border border-white/20 relative shadow-2xl my-8">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/30">
+            <i class="fa-solid fa-file-signature"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold font-display text-white">Apply for e-Panchayat Certificate</h3>
+            <p class="text-xs text-slate-400">Fill in details for digital verification</p>
+          </div>
+        </div>
+        <button onclick="closeApplyCertModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="applyCertForm" onsubmit="handleCertificateSubmit(event)" class="space-y-4 pt-4 text-xs">
+        
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Select Certificate Category *</label>
+          <select id="certTypeSelect" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs" required>
+            <option value="Income Certificate">📜 Income Certificate (आय प्रमाण पत्र)</option>
+            <option value="Birth Certificate">👶 Birth Certificate (जन्म प्रमाण पत्र)</option>
+            <option value="Death Certificate">🕊️ Death Certificate (मृत्यु प्रमाण पत्र)</option>
+            <option value="Residence Certificate">🏡 Residence / Domicile Certificate (निवास प्रमाण पत्र)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Applicant Full Name *</label>
+            <input type="text" id="certApplicantName" required placeholder="e.g., Ramesh Kumar" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Father / Husband Name *</label>
+            <input type="text" id="certFatherName" required placeholder="e.g., Shiv Lal" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Aadhaar Card No. *</label>
+            <input type="text" id="certAadhaar" required pattern="[0-9]{12}" maxlength="12" placeholder="12-digit UIDAI Number" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs font-mono">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Ward Number *</label>
+            <select id="certWard" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs" required>
+              <option value="Ward 1 - North Chowk">Ward 1 - North Chowk</option>
+              <option value="Ward 2 - Gaushala Road">Ward 2 - Gaushala Road</option>
+              <option value="Ward 3 - Kisan Basti">Ward 3 - Kisan Basti</option>
+              <option value="Ward 4 - Panchayat Square" selected>Ward 4 - Panchayat Square</option>
+              <option value="Ward 5 - East Pond">Ward 5 - East Pond</option>
+              <option value="Ward 6 - West Ridge">Ward 6 - West Ridge</option>
+              <option value="Ward 7 - South Mandi">Ward 7 - South Mandi</option>
+              <option value="Ward 8 - Primary School">Ward 8 - Primary School</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Declared Annual Income / Event Date Details *</label>
+          <input type="text" id="certDetails" required placeholder="e.g. Annual Family Income: ₹1,20,000 / Born on: 15-Aug-2024" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Upload Supporting Document (Ration Card/Aadhaar/Proof) *</label>
+          <div class="border-2 border-dashed border-white/20 hover:border-emerald-500/50 rounded-2xl p-4 text-center cursor-pointer transition bg-white/5">
+            <i class="fa-solid fa-cloud-arrow-up text-2xl text-emerald-400 mb-1"></i>
+            <p class="text-xs text-slate-300 font-semibold">Click to attach scanned PDF or JPG</p>
+            <p class="text-[10px] text-slate-400">Max size: 5MB • DigiLocker e-sign enabled</p>
+            <input type="file" id="certDocUpload" class="hidden" accept=".pdf,.jpg,.png">
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-2 pt-1">
+          <input type="checkbox" id="certDeclaration" required class="mt-0.5 rounded bg-slate-800 border-white/20 text-emerald-500 focus:ring-emerald-400">
+          <label for="certDeclaration" class="text-[11px] text-slate-300">
+            I hereby certify that all information submitted is true to my knowledge and verifiable by the Gram Sevak under the Rajasthan/Central Panchayati Raj Act.
+          </label>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end space-x-3 border-t border-white/10">
+          <button type="button" onclick="closeApplyCertModal()" class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition">Cancel</button>
+          <button type="submit" class="btn-emerald px-6 py-2.5 rounded-xl font-bold flex items-center space-x-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Submit Application</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- MODAL 2: Printable Official Certificate Preview Modal -->
+  <div id="certificateViewerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop overflow-y-auto">
+    <div class="w-full max-w-2xl rounded-3xl relative shadow-2xl my-6">
+      
+      <!-- Top Action Bar (No-Print) -->
+      <div class="glass-panel p-3.5 rounded-t-3xl border-b-0 border border-white/20 flex items-center justify-between no-print">
+        <div class="flex items-center space-x-2 text-xs font-bold text-white">
+          <i class="fa-solid fa-stamp text-emerald-400"></i>
+          <span>Official Digitally Signed Certificate</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="window.print()" class="btn-emerald px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-1.5">
+            <i class="fa-solid fa-print"></i>
+            <span>Print / Save PDF</span>
+          </button>
+          <button onclick="closeCertificateModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Certificate Body (Crisp Official Look) -->
+      <div id="printableCertificate" class="bg-gradient-to-b from-amber-50 to-white text-slate-900 p-8 sm:p-10 rounded-b-3xl border-4 border-amber-800/40 shadow-2xl relative overflow-hidden">
+        
+        <!-- Watermark -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none select-none">
+          <i class="fa-solid fa-landmark text-[240px] text-slate-900"></i>
+        </div>
+
+        <!-- Official Header -->
+        <div class="text-center border-b-2 border-amber-900/30 pb-4 relative">
+          <div class="flex justify-center mb-2">
+            <!-- Emblem simulation -->
+            <div class="w-14 h-14 rounded-full border-2 border-amber-900 flex items-center justify-center text-amber-900 text-2xl font-bold">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+          </div>
+          <p class="text-xs font-bold uppercase tracking-widest text-amber-900">Government of India • Panchayati Raj Department</p>
+          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight font-serif mt-1">GRAM PANCHAYAT SHUBHGRAM</h2>
+          <p class="text-xs text-slate-600 font-semibold">Tehsil: Adarsh Nagar • District: Jaipur • State: Rajasthan</p>
+          
+          <div class="mt-3 inline-block bg-amber-900 text-amber-50 px-4 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider font-sans">
+            <span id="certDocTitle">CERTIFICATE OF INCOME (आय प्रमाण पत्र)</span>
+          </div>
+        </div>
+
+        <!-- Certificate Credentials -->
+        <div class="flex justify-between items-center text-[11px] text-slate-600 py-3 border-b border-dashed border-amber-900/30 font-mono">
+          <div>
+            <span>Ref No: </span><strong id="certSerialNo" class="text-slate-900">GP/2026/INC/7821</strong>
+          </div>
+          <div>
+            <span>Date of Issue: </span><strong id="certIssueDate" class="text-slate-900">24-Oct-2026</strong>
+          </div>
+        </div>
+
+        <!-- Certification Text -->
+        <div class="py-6 space-y-4 text-xs leading-relaxed text-slate-800 font-serif">
+          <p>
+            This is to certify that <strong><span id="certPersonName">Shri Ramesh Kumar</span></strong>, 
+            Son/Daughter/Wife of <strong><span id="certPersonFather">Shri Shiv Lal</span></strong>, 
+            resident of <strong><span id="certPersonWard">Ward No. 4, Shubhgram Village</span></strong>, 
+            Post: Shubhgram, District: Jaipur, has been duly verified by the designated Gram Sevak and Revenue Authorities.
+          </p>
+
+          <div class="p-3 bg-amber-100/60 rounded-xl border border-amber-900/20 text-slate-900 font-sans text-xs">
+            <p id="certDeclaredText">
+              <strong>Declared Verification:</strong> The total annual income of the applicant and their dependent family from all legitimate rural and agricultural sources is verified as <strong>₹1,20,000 (Rupees One Lakh Twenty Thousand Only)</strong> per annum.
+            </p>
+          </div>
+
+          <p class="text-[11px] text-slate-600">
+            This certificate is issued under Section 19 of the Panchayati Raj Act for official submission to educational scholarships, bank credit subsidy, and statutory state welfare schemes.
+          </p>
+        </div>
+
+        <!-- Footer: QR Code & Digital Signature -->
+        <div class="pt-6 border-t-2 border-amber-900/30 flex justify-between items-end">
+          
+          <!-- Mock QR Code -->
+          <div class="flex items-center space-x-3">
+            <div class="w-16 h-16 bg-white border-2 border-slate-900 p-1 flex items-center justify-center">
+              <i class="fa-solid fa-qrcode text-4xl text-slate-900"></i>
+            </div>
+            <div class="text-[9px] text-slate-600">
+              <p class="font-bold text-slate-900">Scan to Verify</p>
+              <p>tamper-proof sha-256</p>
+              <p class="font-mono text-[8px] text-emerald-800 font-bold">VERIFIED GENUINE</p>
+            </div>
+          </div>
+
+          <!-- Digital Seal & Sarpanch Signature -->
+          <div class="text-right">
+            <div class="inline-block p-2 border-2 border-emerald-700 rounded-xl bg-emerald-50 text-center mb-1">
+              <p class="text-[9px] font-bold text-emerald-800 uppercase tracking-wider">Digitally Signed By</p>
+              <p class="text-xs font-extrabold text-emerald-950 font-sans">Sunita Devi (Sarpanch)</p>
+              <p class="text-[8px] text-emerald-700 font-mono">DSC: 24-OCT-2026 16:30 IST</p>
+            </div>
+            <p class="text-[10px] text-slate-500 font-sans">Sarpanch / Village Development Officer (VDO)</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL 3: Log Grievance Modal -->
+  <div id="grievanceModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop overflow-y-auto">
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-white/20 relative shadow-2xl my-8">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg border border-rose-500/30">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold font-display text-white">Log Civic Infrastructure Grievance</h3>
+            <p class="text-xs text-slate-400">Jan Sunwai 24x7 Public Redressal</p>
+          </div>
+        </div>
+        <button onclick="closeGrievanceModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="grievanceForm" onsubmit="handleGrievanceSubmit(event)" class="space-y-4 pt-4 text-xs">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Infrastructure Category *</label>
+            <select id="grvCategory" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs" required>
+              <option value="Water">💧 Drinking Water / Pipe Leak</option>
+              <option value="Electricity">⚡ Electricity & Solar Streetlight</option>
+              <option value="Roads">🛣️ Roads, Paving & Drainage</option>
+              <option value="Sanitation">🧹 Sanitation & Waste Dumping</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Priority Urgency *</label>
+            <select id="grvPriority" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs font-bold" required>
+              <option value="High" class="text-rose-400 font-bold">🔴 High / Urgent (24h)</option>
+              <option value="Medium" class="text-amber-400 font-bold" selected>🟡 Medium (48h)</option>
+              <option value="Low" class="text-blue-400 font-bold">🔵 Low / Routine</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Complainant Name *</label>
+            <input type="text" id="grvName" required placeholder="e.g. Ramesh Kumar" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Contact Mobile *</label>
+            <input type="tel" id="grvPhone" required pattern="[0-9]{10}" placeholder="10-digit mobile number" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Specific Location / Landmark *</label>
+          <input type="text" id="grvLocation" required placeholder="e.g. Near Gaushala Gate, Ward 2 Main Transformer" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Grievance Description *</label>
+          <textarea id="grvDesc" rows="3" required placeholder="Describe the civic issue, duration, and safety hazard..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Attach Geo-tagged Photo Proof (Optional)</label>
+          <div class="border border-dashed border-white/20 hover:border-rose-400/50 rounded-xl p-3 text-center cursor-pointer transition bg-white/5">
+            <i class="fa-solid fa-camera text-base text-rose-400 mb-1"></i>
+            <span class="text-xs text-slate-300 ml-2">Click to take photo or upload image</span>
+            <input type="file" id="grvPhoto" class="hidden" accept="image/*">
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end space-x-3 border-t border-white/10">
+          <button type="button" onclick="closeGrievanceModal()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition">Cancel</button>
+          <button type="submit" class="btn-emerald px-6 py-2 rounded-xl font-bold bg-gradient-to-r from-rose-600 to-amber-600 border-rose-400/40 flex items-center space-x-2">
+            <i class="fa-solid fa-ticket"></i>
+            <span>Log Ticket</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- MODAL 4: List Farm Produce Modal (Kisan Mandi) -->
+  <div id="addProduceModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop overflow-y-auto">
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-white/20 relative shadow-2xl my-8">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg border border-amber-500/30">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold font-display text-white">List Farmgate Produce</h3>
+            <p class="text-xs text-slate-400">Sell direct to rural buyers & mandis</p>
+          </div>
+        </div>
+        <button onclick="closeAddProduceModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="addProduceForm" onsubmit="handleAddProduceSubmit(event)" class="space-y-4 pt-4 text-xs">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Crop / Produce Name *</label>
+            <input type="text" id="prodName" required placeholder="e.g. Organic Pusa Wheat" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Category *</label>
+            <select id="prodCategory" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs" required>
+              <option value="grains">Grains & Cereals</option>
+              <option value="vegetables">Fresh Farm Vegetables</option>
+              <option value="oilseeds">Oilseeds & Cash Crops</option>
+              <option value="dairy">Organic Dairy / Honey</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Price per Kg (₹) *</label>
+            <input type="number" id="prodPrice" required min="1" placeholder="35" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Available Stock *</label>
+            <input type="text" id="prodStock" required placeholder="e.g. 1,500 Kg" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Quality Grade *</label>
+            <select id="prodGrade" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs font-bold">
+              <option value="Grade A+">Grade A+</option>
+              <option value="Organic">Organic Certified</option>
+              <option value="Standard">Standard Mandi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Farmer / Seller Name *</label>
+            <input type="text" id="prodFarmer" required placeholder="e.g. Baldev Singh" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Farmer Contact Phone *</label>
+            <input type="tel" id="prodPhone" required pattern="[0-9]{10}" placeholder="98290XXXXX" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Ward / Farm Location *</label>
+          <input type="text" id="prodLocation" required placeholder="e.g. Ward 3, Shubhgram Farm North" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+        </div>
+
+        <div class="pt-3 flex items-center justify-end space-x-3 border-t border-white/10">
+          <button type="button" onclick="closeAddProduceModal()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition">Cancel</button>
+          <button type="submit" class="btn-emerald px-6 py-2 rounded-xl font-bold bg-gradient-to-r from-amber-500 to-emerald-600 border-amber-400/40 flex items-center space-x-2">
+            <i class="fa-solid fa-check"></i>
+            <span>Publish Listing</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- MODAL 5: Contact Farmer Modal -->
+  <div id="contactFarmerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop">
+    <div class="glass-panel w-full max-w-sm rounded-3xl p-6 border border-white/20 relative shadow-2xl text-center">
+      <button onclick="closeContactFarmerModal()" class="absolute top-4 right-4 w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mx-auto border border-amber-500/30 mb-3">
+        <i class="fa-solid fa-tractor"></i>
+      </div>
+
+      <h3 class="text-base font-bold text-white" id="contactFarmerName">Baldev Singh</h3>
+      <p class="text-xs text-amber-300 font-medium" id="contactFarmerProduce">Sharbati Organic Wheat</p>
+      <p class="text-xs text-slate-400 mt-1" id="contactFarmerLocation">Ward 3, Shubhgram Farmgate</p>
+
+      <div class="mt-5 p-3 rounded-2xl bg-white/5 border border-white/10 text-xs space-y-1">
+        <p class="text-slate-400">Direct Contact Number:</p>
+        <p class="text-base font-mono font-bold text-white tracking-wider" id="contactFarmerPhone">+91 98291 44520</p>
+      </div>
+
+      <div class="mt-5 grid grid-cols-2 gap-3">
+        <a id="contactFarmerCallLink" href="tel:+919829144520" class="btn-emerald py-2.5 rounded-xl font-bold text-xs flex items-center justify-center space-x-1.5">
+          <i class="fa-solid fa-phone"></i>
+          <span>Direct Call</span>
+        </a>
+        <a id="contactFarmerWhatsappLink" href="https://wa.me/919829144520" target="_blank" class="py-2.5 rounded-xl font-bold text-xs bg-emerald-600/80 hover:bg-emerald-600 text-white flex items-center justify-center space-x-1.5 transition">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+
+      <p class="text-[10px] text-slate-400 mt-4">Panchayat verified zero-middleman transaction</p>
+    </div>
+  </div>
+
+  <!-- MODAL 6: Add Development Work Modal (Admin) -->
+  <div id="addWorkModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop overflow-y-auto">
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-white/20 relative shadow-2xl my-8">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg border border-cyan-500/30">
+            <i class="fa-solid fa-hammer"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold font-display text-white">Add Village Development Work</h3>
+            <p class="text-xs text-slate-400">Public Task & Budget Registry</p>
+          </div>
+        </div>
+        <button onclick="closeAddWorkModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="addWorkForm" onsubmit="handleAddWorkSubmit(event)" class="space-y-4 pt-4 text-xs">
+        
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Work / Project Title *</label>
+          <input type="text" id="workTitle" required placeholder="e.g. Solar Powered Streetlight Phase 4" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Scheme / Funding Head *</label>
+            <input type="text" id="workScheme" required placeholder="e.g. 15th Finance Commission" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Category *</label>
+            <select id="workCategory" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs">
+              <option value="energy">Renewable Energy / Solar</option>
+              <option value="water">Water & Sanitation</option>
+              <option value="education">Education & Health</option>
+              <option value="infrastructure">Roads & Civil Works</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Sanctioned Budget (₹) *</label>
+            <input type="text" id="workBudget" required placeholder="e.g. ₹12,00,000" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs font-mono">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Assigned Contractor / Staff *</label>
+            <input type="text" id="workContractor" required placeholder="e.g. Surya Powertech Ltd" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Initial Progress (%) *</label>
+            <input type="number" id="workProgress" required min="0" max="100" value="25" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Current Status *</label>
+            <select id="workStatus" class="w-full glass-input px-3 py-2.5 rounded-xl text-xs font-bold">
+              <option value="Planning">Planning Phase</option>
+              <option value="Under Execution" selected>Under Execution</option>
+              <option value="Quality Audit">Quality Audit</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end space-x-3 border-t border-white/10">
+          <button type="button" onclick="closeAddWorkModal()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition">Cancel</button>
+          <button type="submit" class="btn-emerald px-6 py-2 rounded-xl font-bold bg-gradient-to-r from-cyan-600 to-emerald-600 border-cyan-400/40 flex items-center space-x-2">
+            <i class="fa-solid fa-save"></i>
+            <span>Save Development Work</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "smart-village-portal",
+  "version": "1.0.0",
+  "description": "Smart Village / Gram Panchayat Portal with modern Glassmorphism UI",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080",
+    "serve": "npx -y serve . -l 8080",
+    "open": "open http://localhost:8080"
+  },
+  "keywords": [
+    "e-governance",
+    "glassmorphism",
+    "smart-village",
+    "gram-panchayat"
+  ],
+  "author": "",
+  "license": "MIT"
+}
